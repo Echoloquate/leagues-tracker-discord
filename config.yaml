@@ -3,7 +3,7 @@ leagues:
     display_name: "delicious items"
     avatar_url: "https://img.pokemondb.net/artwork/large/lotad.jpg"
     webhook_env: DI_WEBHOOK_URL
-    hiscore_url: "https://secure.runescape.com/m=hiscore_oldschool_seasonal/index_lite.ws"
+    hiscore_url: "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws"
     league_row_index: 24
 
 tiers:
