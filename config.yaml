@@ -4,7 +4,7 @@ leagues:
     avatar_url: "https://img.pokemondb.net/artwork/large/lotad.jpg"
     webhook_env: DI_WEBHOOK_URL
     hiscore_url: "https://secure.runescape.com/m=hiscore_oldschool_seasonal/index_lite.ws"
-    league_row_index: 24
+    league_row_index: 25
 
 tiers:
   - {min: 25000, tier: 8}
