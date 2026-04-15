@@ -1,0 +1,2 @@
+# One RSN per line. Lines starting with # are ignored.
+# Add a user: python tracker.py add di "Zezima"

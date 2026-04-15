@@ -1,0 +1,53 @@
+name: Tracker
+
+on:
+  schedule:
+    - cron: '0 */8 * * *'
+  workflow_dispatch:
+    inputs:
+      league:
+        description: "League key (blank = all configured)"
+        required: false
+        default: ""
+
+concurrency:
+  group: tracker
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Run tracker
+        env:
+          DI_WEBHOOK_URL: ${{ secrets.DI_WEBHOOK_URL }}
+          LEAGUE_INPUT: ${{ github.event.inputs.league }}
+        run: |
+          if [ -n "$LEAGUE_INPUT" ]; then
+            python tracker.py run "$LEAGUE_INPUT"
+          else
+            for league in di; do
+              python tracker.py run "$league"
+            done
+          fi
+
+      - name: Commit updated DB
+        run: |
+          git config user.name "tracker-bot"
+          git config user.email "tracker-bot@users.noreply.github.com"
+          git add leagues.db leagues/
+          if ! git diff --cached --quiet; then
+            git commit -m "snapshot: $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi

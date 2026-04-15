@@ -1,0 +1,17 @@
+leagues:
+  di:
+    display_name: "delicious items"
+    avatar_url: "https://img.pokemondb.net/artwork/large/lotad.jpg"
+    webhook_env: DI_WEBHOOK_URL
+    hiscore_url: "https://secure.runescape.com/m=hiscore_oldschool_seasonal/index_lite.ws"
+    league_row_index: 24
+
+tiers:
+  - {min: 25000, tier: 8}
+  - {min: 16000, tier: 7}
+  - {min: 8000,  tier: 6}
+  - {min: 5000,  tier: 5}
+  - {min: 2500,  tier: 4}
+  - {min: 1500,  tier: 3}
+  - {min: 750,   tier: 2}
+  - {min: 0,     tier: 1}
